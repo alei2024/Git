@@ -1,6 +1,9 @@
-from pymongo import MongoClient, ObjectId   
+from be.model import store  
   
 class DBConn:
+    def __init__(self):
+        self.db = store.get_db_conn()  # 获取MongoDB数据库连接
+    '''
     def __init__(self, user_db_name, store_db_name, book_db_name, order_db_name, store_book_db_name,history_orders_db_name):
         # 连接到MongoDB服务器
         self.client = MongoClient('mongodb://localhost:27017/')
@@ -20,7 +23,7 @@ class DBConn:
         self.orders_collection = self.orders_db['orders']  # 集合名为'orders'
         self.store_book_collection = self.store_book_db['store_book']  # 集合'store_book'
         self.history_orders_collection = self.history_orders_db['history_orders']  # 集合'history_orders'
-  
+  '''
     def user_id_exist(self, user_id):  
         #将 user_id 转换为 ObjectId 类型，匹配 MongoDB 中的 ObjectId 类型
         # 检查用户ID是否存在  

@@ -28,8 +28,9 @@ def be_run():
     this_path = os.path.dirname(__file__)
     parent_path = os.path.dirname(this_path)
     log_file = os.path.join(parent_path, "app.log")
-    init_database(parent_path)
+    init_database() #初始化DB
 
+    #日志设置
     logging.basicConfig(filename=log_file, level=logging.ERROR)
     handler = logging.StreamHandler()
     formatter = logging.Formatter(
@@ -38,9 +39,10 @@ def be_run():
     handler.setFormatter(formatter)
     logging.getLogger().addHandler(handler)
 
-    app = Flask(__name__)
+
+    app = Flask(__name__) #Flask应用
     app.register_blueprint(bp_shutdown)
-    app.register_blueprint(auth.bp_auth)
+    app.register_blueprint(auth.bp_auth)#对应auth模块功能
     app.register_blueprint(seller.bp_seller)
     app.register_blueprint(buyer.bp_buyer)
     init_completed_event.set()
