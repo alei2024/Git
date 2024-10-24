@@ -34,7 +34,7 @@ class Seller(db_conn.DBConn):
         except BaseException as e:
             return 530, "{}".format(str(e))
         return 200, "ok"
-
+    #功能2/3：增加库存
     def add_stock_level(
         self, user_id: str, store_id: str, book_id: str, add_stock_level: int
     ):
@@ -57,7 +57,7 @@ class Seller(db_conn.DBConn):
         except BaseException as e:
             return 530, "{}".format(str(e))
         return 200, "ok"
-
+    #功能3/3：创建商店
     def create_store(self, user_id: str, store_id: str) -> (int, str):
         try:
             if not self.user_id_exist(user_id):
